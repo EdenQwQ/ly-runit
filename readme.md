@@ -3,6 +3,8 @@
 
 Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD.
 
+This fork is updated with the latest [original ly](https://github.com/fairyglade/ly) source code and the service file from [ly-void](https://github.com/drozdowsky/ly-void) so that you can compile and use ly on systems using runit as the init system.
+
 ## Dependencies
  - a C99 compiler (tested with tcc and gcc)
  - a C standard library
@@ -38,6 +40,7 @@ The following desktop environments were tested with success
  - maxx
  - windowmaker
  - spectrwm
+ - cwm
 
 Ly should work with any X desktop environment, and provides
 basic wayland support (sway works very well, for example).
@@ -51,7 +54,7 @@ changing the source code won't be necessary :)
 ## Cloning and Compiling
 Clone the repository
 ```
-git clone --recurse-submodules https://github.com/nullgemm/ly.git
+git clone --recurse-submodules https://github.com/EdenQwQ/ly-runit.git
 ```
 
 Compile
@@ -72,13 +75,7 @@ sudo make install
 
 Enable the service
 ```
-sudo systemctl enable ly.service
-```
-
-If you need to switch between ttys after Ly's start you also have to
-disable getty on Ly's tty to prevent "login" from spawning on top of it
-```
-sudo systemctl disable getty@tty2.service
+sudo ln -s /etc/sv/ly-runit-service/ /var/service/
 ```
 
 ## Configuration
